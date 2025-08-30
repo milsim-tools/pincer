@@ -1,3 +1,5 @@
+export CGO_ENABLED := "0"
+
 git_tag := `git describe --tags --exact-match 2>/dev/null || true`
 git_commit := `git rev-parse --short=6 HEAD`
 version := if git_tag != "" { git_tag } else { "dev-" + git_commit }
