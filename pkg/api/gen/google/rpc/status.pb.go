@@ -120,8 +120,8 @@ const file_google_rpc_status_proto_rawDesc = "" +
 	"\x06Status\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12.\n" +
-	"\adetails\x18\x03 \x03(\v2\x14.google.protobuf.AnyR\adetailsB\x9c\x01\n" +
-	"\x0ecom.google.rpcB\vStatusProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/rpc\xf8\x01\x01\xa2\x02\x03GRX\xaa\x02\n" +
+	"\adetails\x18\x03 \x03(\v2\x14.google.protobuf.AnyR\adetailsB\xa0\x01\n" +
+	"\x0ecom.google.rpcB\vStatusProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/rpc\xf8\x01\x01\xa2\x02\x03GRX\xaa\x02\n" +
 	"Google.Rpc\xca\x02\n" +
 	"Google\\Rpc\xe2\x02\x16Google\\Rpc\\GPBMetadata\xea\x02\vGoogle::Rpcb\x06proto3"
 

@@ -153,8 +153,8 @@ const file_google_api_httpbody_proto_rawDesc = "" +
 	"\x04data\x18\x02 \x01(\fR\x04data\x124\n" +
 	"\n" +
 	"extensions\x18\x03 \x03(\v2\x14.google.protobuf.AnyR\n" +
-	"extensionsB\x9b\x01\n" +
-	"\x0ecom.google.apiB\rHttpbodyProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/api\xa2\x02\x03GAX\xaa\x02\n" +
+	"extensionsB\x9f\x01\n" +
+	"\x0ecom.google.apiB\rHttpbodyProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/api\xa2\x02\x03GAX\xaa\x02\n" +
 	"Google.Api\xca\x02\n" +
 	"Google\\Api\xe2\x02\x16Google\\Api\\GPBMetadata\xea\x02\vGoogle::Apib\x06proto3"
 

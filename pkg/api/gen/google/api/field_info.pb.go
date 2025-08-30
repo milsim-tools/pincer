@@ -278,8 +278,8 @@ const file_google_api_field_info_proto_rawDesc = "" +
 	"\rTypeReference\x12\x1b\n" +
 	"\ttype_name\x18\x01 \x01(\tR\btypeName:W\n" +
 	"\n" +
-	"field_info\x12\x1d.google.protobuf.FieldOptions\x18\xcc\xf1\xf9\x8a\x01 \x01(\v2\x15.google.api.FieldInfoR\tfieldInfoB\x9c\x01\n" +
-	"\x0ecom.google.apiB\x0eFieldInfoProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/api\xa2\x02\x03GAX\xaa\x02\n" +
+	"field_info\x12\x1d.google.protobuf.FieldOptions\x18\xcc\xf1\xf9\x8a\x01 \x01(\v2\x15.google.api.FieldInfoR\tfieldInfoB\xa0\x01\n" +
+	"\x0ecom.google.apiB\x0eFieldInfoProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/api\xa2\x02\x03GAX\xaa\x02\n" +
 	"Google.Api\xca\x02\n" +
 	"Google\\Api\xe2\x02\x16Google\\Api\\GPBMetadata\xea\x02\vGoogle::Apib\x06proto3"
 

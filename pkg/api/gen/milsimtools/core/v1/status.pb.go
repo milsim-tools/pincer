@@ -90,8 +90,8 @@ const file_milsimtools_core_v1_status_proto_rawDesc = "" +
 	"\x06Status\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12.\n" +
-	"\adetails\x18\x03 \x03(\v2\x14.google.protobuf.AnyR\adetailsB\xd7\x01\n" +
-	"\x17com.milsimtools.core.v1B\vStatusProtoP\x01ZAgithub.com/milsim-tools/pincer/pkg/api/milsimtools/core/v1;corev1\xa2\x02\x03MCX\xaa\x02\x13Milsimtools.Core.V1\xca\x02\x13Milsimtools\\Core\\V1\xe2\x02\x1fMilsimtools\\Core\\V1\\GPBMetadata\xea\x02\x15Milsimtools::Core::V1b\x06proto3"
+	"\adetails\x18\x03 \x03(\v2\x14.google.protobuf.AnyR\adetailsB\xdb\x01\n" +
+	"\x17com.milsimtools.core.v1B\vStatusProtoP\x01ZEgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/core/v1;corev1\xa2\x02\x03MCX\xaa\x02\x13Milsimtools.Core.V1\xca\x02\x13Milsimtools\\Core\\V1\xe2\x02\x1fMilsimtools\\Core\\V1\\GPBMetadata\xea\x02\x15Milsimtools::Core::V1b\x06proto3"
 
 var (
 	file_milsimtools_core_v1_status_proto_rawDescOnce sync.Once

@@ -60,8 +60,8 @@ const file_google_api_annotations_proto_rawDesc = "" +
 	"\n" +
 	"\x1cgoogle/api/annotations.proto\x12\n" +
 	"google.api\x1a\x15google/api/http.proto\x1a google/protobuf/descriptor.proto:K\n" +
-	"\x04http\x12\x1e.google.protobuf.MethodOptions\x18\xb0ʼ\" \x01(\v2\x14.google.api.HttpRuleR\x04httpB\x9e\x01\n" +
-	"\x0ecom.google.apiB\x10AnnotationsProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/api\xa2\x02\x03GAX\xaa\x02\n" +
+	"\x04http\x12\x1e.google.protobuf.MethodOptions\x18\xb0ʼ\" \x01(\v2\x14.google.api.HttpRuleR\x04httpB\xa2\x01\n" +
+	"\x0ecom.google.apiB\x10AnnotationsProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/api\xa2\x02\x03GAX\xaa\x02\n" +
 	"Google.Api\xca\x02\n" +
 	"Google\\Api\xe2\x02\x16Google\\Api\\GPBMetadata\xea\x02\vGoogle::Apib\x06proto3"
 

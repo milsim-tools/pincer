@@ -361,8 +361,8 @@ const file_google_api_expr_v1beta1_decl_proto_rawDesc = "" +
 	"\x04args\x18\x01 \x03(\v2\".google.api.expr.v1beta1.IdentDeclR\x04args\x12B\n" +
 	"\vreturn_type\x18\x02 \x01(\v2!.google.api.expr.v1beta1.DeclTypeR\n" +
 	"returnType\x12+\n" +
-	"\x11receiver_function\x18\x03 \x01(\bR\x10receiverFunctionB\xf6\x01\n" +
-	"\x1bcom.google.api.expr.v1beta1B\tDeclProtoP\x01ZJgithub.com/milsim-tools/pincer/pkg/api/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
+	"\x11receiver_function\x18\x03 \x01(\bR\x10receiverFunctionB\xfa\x01\n" +
+	"\x1bcom.google.api.expr.v1beta1B\tDeclProtoP\x01ZNgithub.com/milsim-tools/pincer/pkg/api/gen/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
 
 var (
 	file_google_api_expr_v1beta1_decl_proto_rawDescOnce sync.Once

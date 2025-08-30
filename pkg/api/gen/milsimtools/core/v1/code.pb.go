@@ -119,8 +119,8 @@ const file_milsimtools_core_v1_code_proto_rawDesc = "" +
 	"\x12CODE_UNIMPLEMENTED\x10\n" +
 	"\x12\x11\n" +
 	"\rCODE_INTERNAL\x10\v\x12\x14\n" +
-	"\x10CODE_UNAVAILABLE\x10\fB\xd5\x01\n" +
-	"\x17com.milsimtools.core.v1B\tCodeProtoP\x01ZAgithub.com/milsim-tools/pincer/pkg/api/milsimtools/core/v1;corev1\xa2\x02\x03MCX\xaa\x02\x13Milsimtools.Core.V1\xca\x02\x13Milsimtools\\Core\\V1\xe2\x02\x1fMilsimtools\\Core\\V1\\GPBMetadata\xea\x02\x15Milsimtools::Core::V1b\x06proto3"
+	"\x10CODE_UNAVAILABLE\x10\fB\xd9\x01\n" +
+	"\x17com.milsimtools.core.v1B\tCodeProtoP\x01ZEgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/core/v1;corev1\xa2\x02\x03MCX\xaa\x02\x13Milsimtools.Core.V1\xca\x02\x13Milsimtools\\Core\\V1\xe2\x02\x1fMilsimtools\\Core\\V1\\GPBMetadata\xea\x02\x15Milsimtools::Core::V1b\x06proto3"
 
 var (
 	file_milsimtools_core_v1_code_proto_rawDescOnce sync.Once

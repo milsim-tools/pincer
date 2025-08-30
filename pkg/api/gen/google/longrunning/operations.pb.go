@@ -21,8 +21,8 @@
 package longrunning
 
 import (
-	_ "github.com/milsim-tools/pincer/pkg/api/google/api"
-	rpc "github.com/milsim-tools/pincer/pkg/api/google/rpc"
+	_ "github.com/milsim-tools/pincer/pkg/api/gen/google/api"
+	rpc "github.com/milsim-tools/pincer/pkg/api/gen/google/rpc"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
@@ -645,8 +645,8 @@ const file_google_longrunning_operations_proto_rawDesc = "" +
 	"\x0fDeleteOperation\x12*.google.longrunning.DeleteOperationRequest\x1a\x16.google.protobuf.Empty\"'\xdaA\x04name\x82\xd3\xe4\x93\x02\x1a*\x18/v1/{name=operations/**}\x12\x88\x01\n" +
 	"\x0fCancelOperation\x12*.google.longrunning.CancelOperationRequest\x1a\x16.google.protobuf.Empty\"1\xdaA\x04name\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/{name=operations/**}:cancel\x12Z\n" +
 	"\rWaitOperation\x12(.google.longrunning.WaitOperationRequest\x1a\x1d.google.longrunning.Operation\"\x00\x1a\x1d\xcaA\x1alongrunning.googleapis.com:i\n" +
-	"\x0eoperation_info\x12\x1e.google.protobuf.MethodOptions\x18\x99\b \x01(\v2!.google.longrunning.OperationInfoR\roperationInfoB\xd0\x01\n" +
-	"\x16com.google.longrunningB\x0fOperationsProtoP\x01Z9github.com/milsim-tools/pincer/pkg/api/google/longrunning\xf8\x01\x01\xa2\x02\x03GLX\xaa\x02\x12Google.Longrunning\xca\x02\x12Google\\Longrunning\xe2\x02\x1eGoogle\\Longrunning\\GPBMetadata\xea\x02\x13Google::Longrunningb\x06proto3"
+	"\x0eoperation_info\x12\x1e.google.protobuf.MethodOptions\x18\x99\b \x01(\v2!.google.longrunning.OperationInfoR\roperationInfoB\xd4\x01\n" +
+	"\x16com.google.longrunningB\x0fOperationsProtoP\x01Z=github.com/milsim-tools/pincer/pkg/api/gen/google/longrunning\xf8\x01\x01\xa2\x02\x03GLX\xaa\x02\x12Google.Longrunning\xca\x02\x12Google\\Longrunning\xe2\x02\x1eGoogle\\Longrunning\\GPBMetadata\xea\x02\x13Google::Longrunningb\x06proto3"
 
 var (
 	file_google_longrunning_operations_proto_rawDescOnce sync.Once

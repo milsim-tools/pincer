@@ -172,9 +172,9 @@ const file_milsimtools_units_v1_units_proto_rawDesc = "" +
 	"\x04unit\x18\x01 \x01(\v2\x1a.milsimtools.units.v1.UnitR\x04unit\x12!\n" +
 	"\fmember_count\x18\x02 \x01(\x05R\vmemberCount\x12\x1d\n" +
 	"\n" +
-	"rank_count\x18\x03 \x01(\x05R\trankCountB\xdd\x01\n" +
+	"rank_count\x18\x03 \x01(\x05R\trankCountB\xe1\x01\n" +
 	"\x18com.milsimtools.units.v1B\n" +
-	"UnitsProtoP\x01ZCgithub.com/milsim-tools/pincer/pkg/api/milsimtools/units/v1;unitsv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Units.V1\xca\x02\x14Milsimtools\\Units\\V1\xe2\x02 Milsimtools\\Units\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Units::V1b\x06proto3"
+	"UnitsProtoP\x01ZGgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/units/v1;unitsv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Units.V1\xca\x02\x14Milsimtools\\Units\\V1\xe2\x02 Milsimtools\\Units\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Units::V1b\x06proto3"
 
 var (
 	file_milsimtools_units_v1_units_proto_rawDescOnce sync.Once

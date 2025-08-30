@@ -145,8 +145,8 @@ const file_google_api_launch_stage_proto_rawDesc = "" +
 	"\x04BETA\x10\x03\x12\x06\n" +
 	"\x02GA\x10\x04\x12\x0e\n" +
 	"\n" +
-	"DEPRECATED\x10\x05B\x9e\x01\n" +
-	"\x0ecom.google.apiB\x10LaunchStageProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/api\xa2\x02\x03GAX\xaa\x02\n" +
+	"DEPRECATED\x10\x05B\xa2\x01\n" +
+	"\x0ecom.google.apiB\x10LaunchStageProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/api\xa2\x02\x03GAX\xaa\x02\n" +
 	"Google.Api\xca\x02\n" +
 	"Google\\Api\xe2\x02\x16Google\\Api\\GPBMetadata\xea\x02\vGoogle::Apib\x06proto3"
 

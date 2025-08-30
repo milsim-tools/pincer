@@ -651,8 +651,8 @@ const file_google_api_http_proto_rawDesc = "" +
 	"\apattern\";\n" +
 	"\x11CustomHttpPattern\x12\x12\n" +
 	"\x04kind\x18\x01 \x01(\tR\x04kind\x12\x12\n" +
-	"\x04path\x18\x02 \x01(\tR\x04pathB\x97\x01\n" +
-	"\x0ecom.google.apiB\tHttpProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/api\xa2\x02\x03GAX\xaa\x02\n" +
+	"\x04path\x18\x02 \x01(\tR\x04pathB\x9b\x01\n" +
+	"\x0ecom.google.apiB\tHttpProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/api\xa2\x02\x03GAX\xaa\x02\n" +
 	"Google.Api\xca\x02\n" +
 	"Google\\Api\xe2\x02\x16Google\\Api\\GPBMetadata\xea\x02\vGoogle::Apib\x06proto3"
 

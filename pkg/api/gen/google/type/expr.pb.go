@@ -154,8 +154,8 @@ const file_google_type_expr_proto_rawDesc = "" +
 	"expression\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1a\n" +
-	"\blocation\x18\x04 \x01(\tR\blocationB\x9d\x01\n" +
-	"\x0fcom.google.typeB\tExprProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\blocation\x18\x04 \x01(\tR\blocationB\xa1\x01\n" +
+	"\x0fcom.google.typeB\tExprProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_expr_proto_rawDescOnce sync.Once

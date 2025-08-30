@@ -428,8 +428,8 @@ const file_google_bytestream_bytestream_proto_rawDesc = "" +
 	"ByteStream\x12I\n" +
 	"\x04Read\x12\x1e.google.bytestream.ReadRequest\x1a\x1f.google.bytestream.ReadResponse0\x01\x12L\n" +
 	"\x05Write\x12\x1f.google.bytestream.WriteRequest\x1a .google.bytestream.WriteResponse(\x01\x12k\n" +
-	"\x10QueryWriteStatus\x12*.google.bytestream.QueryWriteStatusRequest\x1a+.google.bytestream.QueryWriteStatusResponseB\xc7\x01\n" +
-	"\x15com.google.bytestreamB\x0fBytestreamProtoP\x01Z8github.com/milsim-tools/pincer/pkg/api/google/bytestream\xa2\x02\x03GBX\xaa\x02\x11Google.Bytestream\xca\x02\x11Google\\Bytestream\xe2\x02\x1dGoogle\\Bytestream\\GPBMetadata\xea\x02\x12Google::Bytestreamb\x06proto3"
+	"\x10QueryWriteStatus\x12*.google.bytestream.QueryWriteStatusRequest\x1a+.google.bytestream.QueryWriteStatusResponseB\xcb\x01\n" +
+	"\x15com.google.bytestreamB\x0fBytestreamProtoP\x01Z<github.com/milsim-tools/pincer/pkg/api/gen/google/bytestream\xa2\x02\x03GBX\xaa\x02\x11Google.Bytestream\xca\x02\x11Google\\Bytestream\xe2\x02\x1dGoogle\\Bytestream\\GPBMetadata\xea\x02\x12Google::Bytestreamb\x06proto3"
 
 var (
 	file_google_bytestream_bytestream_proto_rawDescOnce sync.Once

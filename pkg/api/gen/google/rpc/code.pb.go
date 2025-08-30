@@ -277,8 +277,8 @@ const file_google_rpc_code_proto_rawDesc = "" +
 	"\rUNIMPLEMENTED\x10\f\x12\f\n" +
 	"\bINTERNAL\x10\r\x12\x0f\n" +
 	"\vUNAVAILABLE\x10\x0e\x12\r\n" +
-	"\tDATA_LOSS\x10\x0fB\x97\x01\n" +
-	"\x0ecom.google.rpcB\tCodeProtoP\x01Z1github.com/milsim-tools/pincer/pkg/api/google/rpc\xa2\x02\x03GRX\xaa\x02\n" +
+	"\tDATA_LOSS\x10\x0fB\x9b\x01\n" +
+	"\x0ecom.google.rpcB\tCodeProtoP\x01Z5github.com/milsim-tools/pincer/pkg/api/gen/google/rpc\xa2\x02\x03GRX\xaa\x02\n" +
 	"Google.Rpc\xca\x02\n" +
 	"Google\\Rpc\xe2\x02\x16Google\\Rpc\\GPBMetadata\xea\x02\vGoogle::Rpcb\x06proto3"
 

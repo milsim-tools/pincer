@@ -98,8 +98,8 @@ const file_google_type_fraction_proto_rawDesc = "" +
 	"\x1agoogle/type/fraction.proto\x12\vgoogle.type\"J\n" +
 	"\bFraction\x12\x1c\n" +
 	"\tnumerator\x18\x01 \x01(\x03R\tnumerator\x12 \n" +
-	"\vdenominator\x18\x02 \x01(\x03R\vdenominatorB\xa1\x01\n" +
-	"\x0fcom.google.typeB\rFractionProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\vdenominator\x18\x02 \x01(\x03R\vdenominatorB\xa5\x01\n" +
+	"\x0fcom.google.typeB\rFractionProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_fraction_proto_rawDescOnce sync.Once

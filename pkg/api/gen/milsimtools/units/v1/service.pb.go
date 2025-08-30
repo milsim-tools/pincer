@@ -7,7 +7,7 @@
 package unitsv1
 
 import (
-	_ "github.com/milsim-tools/pincer/pkg/api/google/api"
+	_ "github.com/milsim-tools/pincer/pkg/api/gen/google/api"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -195,8 +195,8 @@ const file_milsimtools_units_v1_service_proto_rawDesc = "" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xe8\x01\n" +
 	"\fUnitsService\x12g\n" +
 	"\aGetUnit\x12$.milsimtools.units.v1.GetUnitRequest\x1a\x1e.milsimtools.units.v1.UnitView\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/units/{id}\x12o\n" +
-	"\tListUnits\x12&.milsimtools.units.v1.ListUnitsRequest\x1a'.milsimtools.units.v1.ListUnitsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/unitsB\xdf\x01\n" +
-	"\x18com.milsimtools.units.v1B\fServiceProtoP\x01ZCgithub.com/milsim-tools/pincer/pkg/api/milsimtools/units/v1;unitsv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Units.V1\xca\x02\x14Milsimtools\\Units\\V1\xe2\x02 Milsimtools\\Units\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Units::V1b\x06proto3"
+	"\tListUnits\x12&.milsimtools.units.v1.ListUnitsRequest\x1a'.milsimtools.units.v1.ListUnitsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/unitsB\xe3\x01\n" +
+	"\x18com.milsimtools.units.v1B\fServiceProtoP\x01ZGgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/units/v1;unitsv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Units.V1\xca\x02\x14Milsimtools\\Units\\V1\xe2\x02 Milsimtools\\Units\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Units::V1b\x06proto3"
 
 var (
 	file_milsimtools_units_v1_service_proto_rawDescOnce sync.Once

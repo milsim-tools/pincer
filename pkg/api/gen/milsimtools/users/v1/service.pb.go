@@ -7,7 +7,7 @@
 package usersv1
 
 import (
-	_ "github.com/milsim-tools/pincer/pkg/api/google/api"
+	_ "github.com/milsim-tools/pincer/pkg/api/gen/google/api"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -204,8 +204,8 @@ const file_milsimtools_users_v1_service_proto_rawDesc = "" +
 	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xe8\x01\n" +
 	"\fUsersService\x12g\n" +
 	"\aGetUser\x12$.milsimtools.users.v1.GetUserRequest\x1a\x1e.milsimtools.users.v1.UserView\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/users/{id}\x12o\n" +
-	"\tListUsers\x12&.milsimtools.users.v1.ListUsersRequest\x1a'.milsimtools.users.v1.ListUsersResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/usersB\xdf\x01\n" +
-	"\x18com.milsimtools.users.v1B\fServiceProtoP\x01ZCgithub.com/milsim-tools/pincer/pkg/api/milsimtools/users/v1;usersv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Users.V1\xca\x02\x14Milsimtools\\Users\\V1\xe2\x02 Milsimtools\\Users\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Users::V1b\x06proto3"
+	"\tListUsers\x12&.milsimtools.users.v1.ListUsersRequest\x1a'.milsimtools.users.v1.ListUsersResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/usersB\xe3\x01\n" +
+	"\x18com.milsimtools.users.v1B\fServiceProtoP\x01ZGgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/users/v1;usersv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Users.V1\xca\x02\x14Milsimtools\\Users\\V1\xe2\x02 Milsimtools\\Users\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Users::V1b\x06proto3"
 
 var (
 	file_milsimtools_users_v1_service_proto_rawDescOnce sync.Once

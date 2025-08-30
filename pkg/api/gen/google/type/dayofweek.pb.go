@@ -124,8 +124,8 @@ const file_google_type_dayofweek_proto_rawDesc = "" +
 	"\x06FRIDAY\x10\x05\x12\f\n" +
 	"\bSATURDAY\x10\x06\x12\n" +
 	"\n" +
-	"\x06SUNDAY\x10\aB\xa2\x01\n" +
-	"\x0fcom.google.typeB\x0eDayofweekProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\x06SUNDAY\x10\aB\xa6\x01\n" +
+	"\x0fcom.google.typeB\x0eDayofweekProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_dayofweek_proto_rawDescOnce sync.Once

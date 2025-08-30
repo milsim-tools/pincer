@@ -201,8 +201,8 @@ const file_google_api_expr_v1beta1_source_proto_rawDesc = "" +
 	"\blocation\x18\x01 \x01(\tR\blocation\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12\x12\n" +
 	"\x04line\x18\x03 \x01(\x05R\x04line\x12\x16\n" +
-	"\x06column\x18\x04 \x01(\x05R\x06columnB\xf8\x01\n" +
-	"\x1bcom.google.api.expr.v1beta1B\vSourceProtoP\x01ZJgithub.com/milsim-tools/pincer/pkg/api/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
+	"\x06column\x18\x04 \x01(\x05R\x06columnB\xfc\x01\n" +
+	"\x1bcom.google.api.expr.v1beta1B\vSourceProtoP\x01ZNgithub.com/milsim-tools/pincer/pkg/api/gen/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
 
 var (
 	file_google_api_expr_v1beta1_source_proto_rawDescOnce sync.Once

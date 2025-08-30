@@ -266,8 +266,8 @@ const file_google_type_postal_address_proto_rawDesc = "" +
 	"recipients\x18\n" +
 	" \x03(\tR\n" +
 	"recipients\x12\"\n" +
-	"\forganization\x18\v \x01(\tR\forganizationB\xa9\x01\n" +
-	"\x0fcom.google.typeB\x12PostalAddressProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\forganization\x18\v \x01(\tR\forganizationB\xad\x01\n" +
+	"\x0fcom.google.typeB\x12PostalAddressProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_postal_address_proto_rawDescOnce sync.Once

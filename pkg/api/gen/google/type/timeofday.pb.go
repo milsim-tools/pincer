@@ -122,8 +122,8 @@ const file_google_type_timeofday_proto_rawDesc = "" +
 	"\x05hours\x18\x01 \x01(\x05R\x05hours\x12\x18\n" +
 	"\aminutes\x18\x02 \x01(\x05R\aminutes\x12\x18\n" +
 	"\aseconds\x18\x03 \x01(\x05R\aseconds\x12\x14\n" +
-	"\x05nanos\x18\x04 \x01(\x05R\x05nanosB\xa5\x01\n" +
-	"\x0fcom.google.typeB\x0eTimeofdayProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\x05nanos\x18\x04 \x01(\x05R\x05nanosB\xa9\x01\n" +
+	"\x0fcom.google.typeB\x0eTimeofdayProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_timeofday_proto_rawDescOnce sync.Once

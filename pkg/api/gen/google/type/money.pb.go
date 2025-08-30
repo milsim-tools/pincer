@@ -113,9 +113,9 @@ const file_google_type_money_proto_rawDesc = "" +
 	"\x05Money\x12#\n" +
 	"\rcurrency_code\x18\x01 \x01(\tR\fcurrencyCode\x12\x14\n" +
 	"\x05units\x18\x02 \x01(\x03R\x05units\x12\x14\n" +
-	"\x05nanos\x18\x03 \x01(\x05R\x05nanosB\xa1\x01\n" +
+	"\x05nanos\x18\x03 \x01(\x05R\x05nanosB\xa5\x01\n" +
 	"\x0fcom.google.typeB\n" +
-	"MoneyProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"MoneyProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_money_proto_rawDescOnce sync.Once

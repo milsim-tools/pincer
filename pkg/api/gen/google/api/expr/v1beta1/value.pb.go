@@ -548,9 +548,9 @@ const file_google_api_expr_v1beta1_value_proto_rawDesc = "" +
 	"\aentries\x18\x01 \x03(\v2'.google.api.expr.v1beta1.MapValue.EntryR\aentries\x1ao\n" +
 	"\x05Entry\x120\n" +
 	"\x03key\x18\x01 \x01(\v2\x1e.google.api.expr.v1beta1.ValueR\x03key\x124\n" +
-	"\x05value\x18\x02 \x01(\v2\x1e.google.api.expr.v1beta1.ValueR\x05valueB\xf7\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x1e.google.api.expr.v1beta1.ValueR\x05valueB\xfb\x01\n" +
 	"\x1bcom.google.api.expr.v1beta1B\n" +
-	"ValueProtoP\x01ZJgithub.com/milsim-tools/pincer/pkg/api/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
+	"ValueProtoP\x01ZNgithub.com/milsim-tools/pincer/pkg/api/gen/google/api/expr/v1beta1;exprv1beta1\xf8\x01\x01\xa2\x02\x03GAE\xaa\x02\x17Google.Api.Expr.V1beta1\xca\x02\x17Google\\Api\\Expr\\V1beta1\xe2\x02#Google\\Api\\Expr\\V1beta1\\GPBMetadata\xea\x02\x1aGoogle::Api::Expr::V1beta1b\x06proto3"
 
 var (
 	file_google_api_expr_v1beta1_value_proto_rawDescOnce sync.Once

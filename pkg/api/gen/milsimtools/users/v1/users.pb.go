@@ -294,9 +294,9 @@ const file_milsimtools_users_v1_users_proto_rawDesc = "" +
 	"\x1dEMAIL_PREFERENCES_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15EMAIL_PREFERENCES_ALL\x10\x01\x12$\n" +
 	" EMAIL_PREFERENCES_IMPORTANT_ONLY\x10\x02\x12\x1a\n" +
-	"\x16EMAIL_PREFERENCES_NONE\x10\x03B\xdd\x01\n" +
+	"\x16EMAIL_PREFERENCES_NONE\x10\x03B\xe1\x01\n" +
 	"\x18com.milsimtools.users.v1B\n" +
-	"UsersProtoP\x01ZCgithub.com/milsim-tools/pincer/pkg/api/milsimtools/users/v1;usersv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Users.V1\xca\x02\x14Milsimtools\\Users\\V1\xe2\x02 Milsimtools\\Users\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Users::V1b\x06proto3"
+	"UsersProtoP\x01ZGgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/users/v1;usersv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Users.V1\xca\x02\x14Milsimtools\\Users\\V1\xe2\x02 Milsimtools\\Users\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Users::V1b\x06proto3"
 
 var (
 	file_milsimtools_users_v1_users_proto_rawDescOnce sync.Once

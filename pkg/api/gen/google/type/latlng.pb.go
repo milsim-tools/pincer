@@ -101,8 +101,8 @@ const file_google_type_latlng_proto_rawDesc = "" +
 	"\x18google/type/latlng.proto\x12\vgoogle.type\"B\n" +
 	"\x06LatLng\x12\x1a\n" +
 	"\blatitude\x18\x01 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x02 \x01(\x01R\tlongitudeB\xa2\x01\n" +
-	"\x0fcom.google.typeB\vLatlngProtoP\x01Z2github.com/milsim-tools/pincer/pkg/api/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
+	"\tlongitude\x18\x02 \x01(\x01R\tlongitudeB\xa6\x01\n" +
+	"\x0fcom.google.typeB\vLatlngProtoP\x01Z6github.com/milsim-tools/pincer/pkg/api/gen/google/type\xf8\x01\x01\xa2\x02\x03GTX\xaa\x02\vGoogle.Type\xca\x02\vGoogle\\Type\xe2\x02\x17Google\\Type\\GPBMetadata\xea\x02\fGoogle::Typeb\x06proto3"
 
 var (
 	file_google_type_latlng_proto_rawDescOnce sync.Once
