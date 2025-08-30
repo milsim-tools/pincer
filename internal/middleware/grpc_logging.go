@@ -78,7 +78,7 @@ func (s GRPCServerLog) UnaryServerInterceptor(ctx context.Context, req interface
 }
 
 // StreamServerInterceptor returns an interceptor that logs gRPC requests
-func (s GRPCServerLog) StreamServerInterceptor(srv interface{}, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
+func (s GRPCServerLog) StreamServerInterceptor(srv any, ss grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) error {
 	begin := time.Now()
 	err := handler(srv, ss)
 	if err == nil && s.DisableRequestSuccessLog {
