@@ -6,12 +6,14 @@ import (
 
 	"github.com/grafana/dskit/services"
 	unitsv1 "github.com/milsim-tools/pincer/pkg/api/gen/milsimtools/units/v1"
+	"github.com/milsim-tools/pincer/pkg/db"
 	"github.com/milsim-tools/pincer/pkg/server"
 	"github.com/milsim-tools/pincer/pkg/units"
 )
 
 const (
 	Server = "server"
+	Db     = "db"
 
 	Units = "units"
 
@@ -29,6 +31,16 @@ func (p *Pincer) initUnits() (services.Service, error) {
 	unitsv1.RegisterUnitsServiceServer(p.Server.GRPCServer, p.Units)
 
 	return p.Units, nil
+}
+
+func (p *Pincer) initDb() (services.Service, error) {
+	db, err := db.New(p.logger.With("module", Db), p.Config.Db)
+	if err != nil {
+		return nil, err
+	}
+	p.Db = db
+
+	return p.Db, nil
 }
 
 func (p *Pincer) initServer() (services.Service, error) {

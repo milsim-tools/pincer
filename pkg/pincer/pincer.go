@@ -10,6 +10,7 @@ import (
 	"github.com/grafana/dskit/services"
 	"github.com/milsim-tools/pincer/internal/modules"
 	"github.com/milsim-tools/pincer/internal/signals"
+	"github.com/milsim-tools/pincer/pkg/db"
 	"github.com/milsim-tools/pincer/pkg/server"
 	"github.com/milsim-tools/pincer/pkg/units"
 	"github.com/urfave/cli/v2"
@@ -39,6 +40,7 @@ var Flags = []cli.Flag{
 
 func init() {
 	Flags = append(Flags, server.Flags...)
+	Flags = append(Flags, db.Flags...)
 	Flags = append(Flags, units.Flags...)
 }
 
@@ -48,6 +50,7 @@ type Config struct {
 	Version       string
 
 	Server server.Config
+	Db     db.Config
 
 	Units units.Config
 }
@@ -60,6 +63,7 @@ func ConfigFromFlags(version string, ctx *cli.Context) Config {
 	config.Version = version
 
 	config.Server = server.ConfigFromFlags(ctx)
+	config.Db = db.ConfigFromFlags(ctx)
 	config.Units = units.ConfigFromFlags(ctx)
 
 	return config
@@ -76,6 +80,7 @@ type Pincer struct {
 	SignalHandler *signals.Handler
 
 	Server *server.Server
+	Db     *db.Db
 
 	Units *units.Units
 }
@@ -97,6 +102,7 @@ func (p *Pincer) setupModuleManager() error {
 	mm := modules.NewManager(p.logger.WithGroup("module-manager"))
 
 	mm.RegisterModule(Server, p.initServer, modules.UserInvisibleModule)
+	mm.RegisterModule(Db, p.initDb, modules.UserInvisibleModule)
 
 	mm.RegisterModule(Units, p.initUnits)
 
@@ -104,7 +110,7 @@ func (p *Pincer) setupModuleManager() error {
 	mm.RegisterModule(Backend, nil)
 
 	deps := map[string][]string{
-		Units: {Server},
+		Units: {Db, Server},
 
 		// Groups
 		All:     {Units},
