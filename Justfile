@@ -7,9 +7,6 @@ ldflags := "-X main.Version=" + version
 _clean-gen:
   rm -rf pkg/api/gen
 
-_clean:
-  rm -rf out
-
 # Generate API bindings for the protobuf definitions
 [group("proto")]
 gen: _clean-gen
@@ -25,6 +22,9 @@ proto-lint:
 [group("proto")]
 proto-breaking:
   buf breaking --against '.git#branch=main'
+
+_clean:
+  rm -rf out
 
 # Compile the output binary
 [group("go")]
