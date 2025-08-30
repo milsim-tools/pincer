@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	FlagTarget = "target"
+	FlagTarget        = "target"
 	FlagShutdownDelay = "shutdown-delay"
 )
 

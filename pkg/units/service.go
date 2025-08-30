@@ -20,11 +20,11 @@ func (s *Units) ListUnits(context.Context, *unitsv1.ListUnitsRequest) (*unitsv1.
 		Units: []*unitsv1.UnitView{
 			{
 				Unit: &unitsv1.Unit{
-					Id: "unit-1",
+					Id:          "unit-1",
 					DisplayName: "Unit 1",
-					Slug: "unit-1",
+					Slug:        "unit-1",
 					Description: "Hello, I am Unit 1",
-					OwnerId: "",
+					OwnerId:     "",
 				},
 			},
 		},
