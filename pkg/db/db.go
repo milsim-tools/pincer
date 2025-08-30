@@ -38,7 +38,7 @@ type Db struct {
 	cfg    Config
 	logger *slog.Logger
 
-	db *gorm.DB
+	Db *gorm.DB
 }
 
 func New(
@@ -55,7 +55,7 @@ func New(
 	u := &Db{
 		cfg:    cfg,
 		logger: logger,
-		db:     db,
+		Db:     db,
 	}
 
 	u.Service = services.NewIdleService(nil, u.stopping)

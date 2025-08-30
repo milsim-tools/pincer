@@ -22,7 +22,7 @@ const (
 )
 
 func (p *Pincer) initUnits() (services.Service, error) {
-	units, err := units.New(p.logger.With("module", Units), p.Config.Units, p.Server)
+	units, err := units.New(p.logger.With("module", Units), p.Config.Units, p.Db)
 	if err != nil {
 		return nil, err
 	}
