@@ -8,9 +8,11 @@ import (
 	"time"
 
 	"github.com/grafana/dskit/services"
+	"github.com/milsim-tools/pincer/internal/middleware"
 	"github.com/milsim-tools/pincer/internal/signals"
 	"github.com/urfave/cli/v2"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 const (
@@ -154,7 +156,19 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 		IdleTimeout:  30 * time.Second,
 	}
 
-	grpcOptions := []grpc.ServerOption{}
+	serverLog := middleware.GRPCServerLog{
+		Log:                      logger,
+		WithRequest:              true,
+		DisableRequestSuccessLog: false,
+	}
+
+	grpcMiddleware := []grpc.UnaryServerInterceptor{serverLog.UnaryServerInterceptor}
+	grpcStreamMiddleware := []grpc.StreamServerInterceptor{serverLog.StreamServerInterceptor}
+
+	grpcOptions := []grpc.ServerOption{
+		grpc.ChainUnaryInterceptor(grpcMiddleware...),
+		grpc.ChainStreamInterceptor(grpcStreamMiddleware...),
+	}
 
 	grpcServer := grpc.NewServer(grpcOptions...)
 
@@ -194,6 +208,8 @@ func (s *Server) Run() error {
 		default:
 		}
 	}()
+
+	reflection.Register(s.GRPCServer)
 
 	go func() {
 		err := s.GRPCServer.Serve(s.grpcListener)

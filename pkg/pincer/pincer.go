@@ -11,6 +11,7 @@ import (
 	"github.com/milsim-tools/pincer/internal/modules"
 	"github.com/milsim-tools/pincer/internal/signals"
 	"github.com/milsim-tools/pincer/pkg/server"
+	"github.com/milsim-tools/pincer/pkg/units"
 	"github.com/urfave/cli/v2"
 	"go.uber.org/atomic"
 )
@@ -38,6 +39,7 @@ var Flags = []cli.Flag{
 
 func init() {
 	Flags = append(Flags, server.Flags...)
+	Flags = append(Flags, units.Flags...)
 }
 
 type Config struct {
@@ -46,6 +48,8 @@ type Config struct {
 	Version       string
 
 	Server server.Config
+
+	Units units.Config
 }
 
 func ConfigFromFlags(version string, ctx *cli.Context) Config {
@@ -56,6 +60,7 @@ func ConfigFromFlags(version string, ctx *cli.Context) Config {
 	config.Version = version
 
 	config.Server = server.ConfigFromFlags(ctx)
+	config.Units = units.ConfigFromFlags(ctx)
 
 	return config
 }
@@ -71,6 +76,8 @@ type Pincer struct {
 	SignalHandler *signals.Handler
 
 	Server *server.Server
+
+	Units *units.Units
 }
 
 func New(logger *slog.Logger, cfg Config) (*Pincer, error) {
@@ -91,12 +98,16 @@ func (p *Pincer) setupModuleManager() error {
 
 	mm.RegisterModule(Server, p.initServer, modules.UserInvisibleModule)
 
+	mm.RegisterModule(Units, p.initUnits)
+
 	mm.RegisterModule(All, nil)
 	mm.RegisterModule(Backend, nil)
 
 	deps := map[string][]string{
+		Units: {Server},
+
 		// Groups
-		All:     {},
+		All:     {Units},
 		Backend: {},
 	}
 
