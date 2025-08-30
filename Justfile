@@ -1,5 +1,5 @@
 clean:
-  rm -rf gen
+  rm -rf pkg/api/gen
 
 gen: clean
   buf generate buf.build/googleapis/googleapis
