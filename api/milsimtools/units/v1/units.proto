@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package milsimtools.units.v1;
+
+message Unit {
+  string id = 1;
+  string display_name = 2;
+  string slug = 3;
+  string description = 4;
+  string owner_id = 5;
+}
+
+message UnitView {
+  Unit unit = 1;
+  int32 member_count = 2;
+  int32 rank_count = 3;
+}

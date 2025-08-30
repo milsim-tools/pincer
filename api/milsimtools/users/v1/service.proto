@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package milsimtools.users.v1;
+
+import "milsimtools/users/v1/users.proto";
+import "google/api/annotations.proto";
+
+message GetUserRequest {
+  string id = 1;
+  string username = 2;
+}
+
+message ListUsersRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+  string order_by = 3;
+}
+
+message ListUsersResponse {
+  repeated UserView users = 1;
+  string next_page_token = 2;
+}
+
+service UsersService {
+  rpc GetUser (GetUserRequest) returns (UserView) {
+    option (google.api.http) = { get: "/v1/users/{id}" };
+  };
+
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse) {
+    option (google.api.http) = { get: "/v1/users" };
+  };
+}

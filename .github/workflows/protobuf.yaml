@@ -1,0 +1,109 @@
+---
+name: Validate Protobufs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/protobuf.yaml
+      - api/**/*
+      - buf.yaml
+      - buf.gen.yaml
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.lint.outcome }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: bufbuild/buf-setup-action@v1
+    - id: lint
+      uses: bufbuild/buf-lint-action@v1
+
+  breaking:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    outputs:
+      status: ${{ steps.breaking.outcome }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: bufbuild/buf-setup-action@v1
+    - id: breaking
+      uses: bufbuild/buf-breaking-action@v1
+      with:
+        against: 'https://github.com/${{ github.repository }}.git#branch=main'
+
+  codegen:
+    runs-on: ubuntu-latest
+    outputs:
+      status: ${{ steps.codegen.outcome }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: bufbuild/buf-setup-action@v1
+    - uses: extractions/setup-just@v3
+    - uses: actions/setup-go@v5
+      with:
+        go-version: '1.24.4'
+
+    - name: Check generated Go code is up to date
+      id: codegen
+      run: |
+        just gen
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Generated Go code is out of date. Please run 'just gen' and commit the changes."
+          git status --porcelain
+          exit 1
+        fi
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [lint, breaking, codegen]
+    if: always() && github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Generate summary
+      run: |
+        echo "## 🔍 Protobuf Validation Results" > validation_summary.md
+        echo "" >> validation_summary.md
+        
+        # Lint results
+        echo "### Linting" >> validation_summary.md
+        if [ "${{ needs.lint.outputs.status }}" == "success" ]; then
+          echo "✅ Protobuf linting passed" >> validation_summary.md
+        else
+          echo "❌ Protobuf linting failed" >> validation_summary.md
+        fi
+        echo "" >> validation_summary.md
+        
+        # Breaking changes results (only for PRs)
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          echo "### Breaking Changes Check" >> validation_summary.md
+          if [ "${{ needs.breaking.outputs.status }}" == "success" ]; then
+            echo "✅ No breaking changes detected" >> validation_summary.md
+          elif [ "${{ needs.breaking.outputs.status }}" == "failure" ]; then
+            echo "❌ Breaking changes detected" >> validation_summary.md
+          else
+            echo "⚠️ Breaking changes check was skipped or cancelled" >> validation_summary.md
+          fi
+          echo "" >> validation_summary.md
+        fi
+        
+        # Code generation results
+        echo "### Generated Code Check" >> validation_summary.md
+        if [ "${{ needs.codegen.outputs.status }}" == "success" ]; then
+          echo "✅ Generated Go code is up to date" >> validation_summary.md
+        else
+          echo "❌ Generated Go code is out of date" >> validation_summary.md
+          echo "" >> validation_summary.md
+          echo "Please run \`just gen\` and commit the changes." >> validation_summary.md
+        fi
+
+    - name: Create or update PR comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        header: protobuf-validation
+        path: validation_summary.md

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package milsimtools.users.v1;
+
+message User {
+  string id = 1;
+  string username = 2;
+  string display_name = 3;
+  string email = 4;
+  string bio = 5;
+  string avatar_url = 6;
+}
+
+message UserView {
+  User user = 1;
+  int32 unit_count = 2;
+}
+
+enum EmailPreferences {
+  EMAIL_PREFERENCES_UNSPECIFIED = 0;
+  EMAIL_PREFERENCES_ALL = 1;
+  EMAIL_PREFERENCES_IMPORTANT_ONLY = 2;
+  EMAIL_PREFERENCES_NONE = 3;
+}
+
+message UserPreferences {
+  string user_id = 1;
+  bool dark_mode = 2;
+  EmailPreferences email_preferences = 3;
+}

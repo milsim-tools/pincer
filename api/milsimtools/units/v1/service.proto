@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package milsimtools.units.v1;
+
+import "milsimtools/units/v1/units.proto";
+import "google/api/annotations.proto";
+
+message GetUnitRequest {
+  string id = 1;
+}
+
+message ListUnitsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+  string order_by = 3;
+}
+
+message ListUnitsResponse {
+  repeated UnitView units = 1;
+  string next_page_token = 2;
+}
+
+service UnitsService {
+  rpc GetUnit (GetUnitRequest) returns (UnitView) {
+    option (google.api.http) = { get: "/v1/units/{id}" };
+  };
+
+  rpc ListUnits (ListUnitsRequest) returns (ListUnitsResponse) {
+    option (google.api.http) = { get: "/v1/units" };
+  };
+}
