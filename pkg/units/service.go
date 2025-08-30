@@ -41,6 +41,8 @@ func (s *Units) GetUnit(ctx context.Context, req *unitsv1.GetUnitRequest) (*unit
 func (s *Units) ListUnits(ctx context.Context, req *unitsv1.ListUnitsRequest) (*unitsv1.ListUnitsResponse, error) {
 	qb := gorm.G[UnitsUnit](s.db.Db).Limit(int(req.PageSize))
 
+	// TODO: Cursor pagination
+
 	if req.OrderBy != "" {
 		parts := strings.SplitSeq(req.OrderBy, ",")
 		for part := range parts {
