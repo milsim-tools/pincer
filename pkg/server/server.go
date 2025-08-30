@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/grafana/dskit/services"
+	"github.com/milsim-tools/pincer/internal/signals"
 	"github.com/urfave/cli/v2"
 	"google.golang.org/grpc"
 )
@@ -23,6 +24,16 @@ const (
 	FlagGRPCWriteTimeout = "grpc-write-timeout"
 	FlagGRPCIdleTimeout  = "grpc-idle-timeout"
 )
+
+// SignalHandler used by Server.
+type SignalHandler interface {
+	// Starts the signals handler. This method is blocking, and returns only after signal is received,
+	// or "Stop" is called.
+	Loop()
+
+	// Stop blocked "Loop" method.
+	Stop()
+}
 
 var Flags = []cli.Flag{
 	&cli.StringFlag{
@@ -114,6 +125,7 @@ type Server struct {
 	services.Service
 
 	config       Config
+	handler      SignalHandler
 	httpListener net.Listener
 	grpcListener net.Listener
 
@@ -153,15 +165,23 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 		logger:       logger,
 		httpListener: httpListener,
 		grpcListener: grpcListener,
+		handler:      signals.NewHandler(logger),
 	}
-
-	srv.Service = services.NewBasicService(nil, srv.running, srv.stopping)
 
 	return &srv, nil
 }
 
-func (s *Server) running(ctx context.Context) error {
+func (s *Server) Run() error {
 	errChan := make(chan error, 1)
+
+	// Wait for a signal
+	go func() {
+		s.handler.Loop()
+		select {
+		case errChan <- nil:
+		default:
+		}
+	}()
 
 	go func() {
 		err := s.HTTPServer.Serve(s.httpListener)
@@ -183,13 +203,12 @@ func (s *Server) running(ctx context.Context) error {
 	return <-errChan
 }
 
-func (s *Server) stopping(_ error) error {
-	s.logger.Info("shutting down server")
+func (s *Server) Shutdown() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
+
 	_ = s.HTTPServer.Shutdown(ctx)
 	s.GRPCServer.GracefulStop()
-	return nil
 }
 
 // handleGRPCError consolidates GRPC Server error handling by sending
