@@ -42,56 +42,56 @@ var Flags = []cli.Flag{
 		Name:    FlagHTTPBindAddr,
 		Value:   ":8080",
 		Usage:   "The HTTP address to bind the server to.",
-		EnvVars: []string{"HEARTH_HTTP_BIND_ADDR"},
+		EnvVars: []string{"PINCER_HTTP_BIND_ADDR"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagHTTPReadTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time for reading the request body.",
-		EnvVars: []string{"HEARTH_HTTP_READ_TIMEOUT"},
+		EnvVars: []string{"PINCER_HTTP_READ_TIMEOUT"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagHTTPWriteTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time for writing the response body.",
-		EnvVars: []string{"HEARTH_HTTP_WRITE_TIMEOUT"},
+		EnvVars: []string{"PINCER_HTTP_WRITE_TIMEOUT"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagHTTPIdleTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time to wait for another request when keep-alives are used.",
-		EnvVars: []string{"HEARTH_HTTP_IDLE_TIMEOUT"},
+		EnvVars: []string{"PINCER_HTTP_IDLE_TIMEOUT"},
 	},
 
 	&cli.StringFlag{
 		Name:    FlagGRPCBindAddr,
 		Value:   ":9000",
 		Usage:   "The gRPC address to bind the server to.",
-		EnvVars: []string{"HEARTH_GRPC_BIND_ADDR"},
+		EnvVars: []string{"PINCER_GRPC_BIND_ADDR"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagGRPCReadTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time for reading the request body.",
-		EnvVars: []string{"HEARTH_GRPC_READ_TIMEOUT"},
+		EnvVars: []string{"PINCER_GRPC_READ_TIMEOUT"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagGRPCWriteTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time for writing the response body.",
-		EnvVars: []string{"HEARTH_GRPC_WRITE_TIMEOUT"},
+		EnvVars: []string{"PINCER_GRPC_WRITE_TIMEOUT"},
 	},
 
 	&cli.DurationFlag{
 		Name:    FlagGRPCIdleTimeout,
 		Value:   30 * time.Second,
 		Usage:   "Maximum time to wait for another request when keep-alives are used.",
-		EnvVars: []string{"HEARTH_GRPC_IDLE_TIMEOUT"},
+		EnvVars: []string{"PINCER_GRPC_IDLE_TIMEOUT"},
 	},
 }
 
