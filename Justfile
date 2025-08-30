@@ -64,3 +64,6 @@ check:
 [group("go")]
 test:
 	go clean -testcache && go test -v ./...
+
+dotenv:
+  if [ ! -f ".env" ]; then cp .env.sample .env; fi
