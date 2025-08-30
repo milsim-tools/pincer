@@ -131,6 +131,7 @@ type Server struct {
 	httpListener net.Listener
 	grpcListener net.Listener
 
+	HTTP       *http.ServeMux
 	HTTPServer *http.Server
 	GRPCServer *grpc.Server
 
@@ -150,7 +151,9 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 
 	logger.Info("server listening on addr", "http", httpListener.Addr(), "grpc", grpcListener.Addr())
 
+	mux := http.NewServeMux()
 	httpServer := http.Server{
+		Handler:      mux,
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 		IdleTimeout:  30 * time.Second,
@@ -174,12 +177,15 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 
 	srv := Server{
 		config:       config,
-		HTTPServer:   &httpServer,
-		GRPCServer:   grpcServer,
 		logger:       logger,
+		handler:      signals.NewHandler(logger),
 		httpListener: httpListener,
 		grpcListener: grpcListener,
-		handler:      signals.NewHandler(logger),
+
+		HTTP:       mux,
+		HTTPServer: &httpServer,
+
+		GRPCServer: grpcServer,
 	}
 
 	return &srv, nil
