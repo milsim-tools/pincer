@@ -9,6 +9,7 @@ package usersv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -81,6 +82,8 @@ type User struct {
 	Email         string                 `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	Bio           string                 `protobuf:"bytes,5,opt,name=bio,proto3" json:"bio,omitempty"`
 	AvatarUrl     string                 `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -155,6 +158,20 @@ func (x *User) GetAvatarUrl() string {
 		return x.AvatarUrl
 	}
 	return ""
+}
+
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
 }
 
 type UserView struct {
@@ -273,7 +290,7 @@ var File_milsimtools_users_v1_users_proto protoreflect.FileDescriptor
 
 const file_milsimtools_users_v1_users_proto_rawDesc = "" +
 	"\n" +
-	" milsimtools/users/v1/users.proto\x12\x14milsimtools.users.v1\"\x9c\x01\n" +
+	" milsimtools/users/v1/users.proto\x12\x14milsimtools.users.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x92\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
@@ -281,7 +298,11 @@ const file_milsimtools_users_v1_users_proto_rawDesc = "" +
 	"\x05email\x18\x04 \x01(\tR\x05email\x12\x10\n" +
 	"\x03bio\x18\x05 \x01(\tR\x03bio\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x06 \x01(\tR\tavatarUrl\"Y\n" +
+	"avatar_url\x18\x06 \x01(\tR\tavatarUrl\x129\n" +
+	"\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"Y\n" +
 	"\bUserView\x12.\n" +
 	"\x04user\x18\x01 \x01(\v2\x1a.milsimtools.users.v1.UserR\x04user\x12\x1d\n" +
 	"\n" +
@@ -313,19 +334,22 @@ func file_milsimtools_users_v1_users_proto_rawDescGZIP() []byte {
 var file_milsimtools_users_v1_users_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_milsimtools_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_milsimtools_users_v1_users_proto_goTypes = []any{
-	(EmailPreferences)(0),   // 0: milsimtools.users.v1.EmailPreferences
-	(*User)(nil),            // 1: milsimtools.users.v1.User
-	(*UserView)(nil),        // 2: milsimtools.users.v1.UserView
-	(*UserPreferences)(nil), // 3: milsimtools.users.v1.UserPreferences
+	(EmailPreferences)(0),         // 0: milsimtools.users.v1.EmailPreferences
+	(*User)(nil),                  // 1: milsimtools.users.v1.User
+	(*UserView)(nil),              // 2: milsimtools.users.v1.UserView
+	(*UserPreferences)(nil),       // 3: milsimtools.users.v1.UserPreferences
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_milsimtools_users_v1_users_proto_depIdxs = []int32{
-	1, // 0: milsimtools.users.v1.UserView.user:type_name -> milsimtools.users.v1.User
-	0, // 1: milsimtools.users.v1.UserPreferences.email_preferences:type_name -> milsimtools.users.v1.EmailPreferences
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 0: milsimtools.users.v1.User.created_at:type_name -> google.protobuf.Timestamp
+	4, // 1: milsimtools.users.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	1, // 2: milsimtools.users.v1.UserView.user:type_name -> milsimtools.users.v1.User
+	0, // 3: milsimtools.users.v1.UserPreferences.email_preferences:type_name -> milsimtools.users.v1.EmailPreferences
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_milsimtools_users_v1_users_proto_init() }

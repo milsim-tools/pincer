@@ -3,6 +3,7 @@ package users
 import (
 	"github.com/milsim-tools/pincer/internal/models"
 	usersv1 "github.com/milsim-tools/pincer/pkg/api/gen/milsimtools/users/v1"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type UsersUser struct {
@@ -23,5 +24,7 @@ func (u UsersUser) Proto() *usersv1.User {
 		Email:       u.Email,
 		Bio:         u.Bio,
 		AvatarUrl:   u.AvatarURL,
+		CreatedAt:   timestamppb.New(u.CreatedAt),
+		UpdatedAt:   timestamppb.New(u.UpdatedAt),
 	}
 }

@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package milsimtools.users.v1;
+import "google/protobuf/timestamp.proto";
 
 message User {
   string id = 1;
@@ -9,6 +10,8 @@ message User {
   string email = 4;
   string bio = 5;
   string avatar_url = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
 }
 
 message UserView {
