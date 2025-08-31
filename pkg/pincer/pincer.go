@@ -16,6 +16,7 @@ import (
 	"github.com/milsim-tools/pincer/pkg/db"
 	"github.com/milsim-tools/pincer/pkg/server"
 	"github.com/milsim-tools/pincer/pkg/units"
+	"github.com/milsim-tools/pincer/pkg/users"
 	"github.com/urfave/cli/v2"
 	"go.uber.org/atomic"
 	"google.golang.org/grpc/health/grpc_health_v1"
@@ -46,6 +47,7 @@ func init() {
 	Flags = append(Flags, server.Flags...)
 	Flags = append(Flags, db.Flags...)
 	Flags = append(Flags, units.Flags...)
+	Flags = append(Flags, users.Flags...)
 }
 
 type Config struct {
@@ -57,6 +59,7 @@ type Config struct {
 	Db     db.Config
 
 	Units units.Config
+	Users users.Config
 }
 
 func ConfigFromFlags(version string, ctx *cli.Context) Config {
@@ -69,6 +72,7 @@ func ConfigFromFlags(version string, ctx *cli.Context) Config {
 	config.Server = server.ConfigFromFlags(ctx)
 	config.Db = db.ConfigFromFlags(ctx)
 	config.Units = units.ConfigFromFlags(ctx)
+	config.Users = users.ConfigFromFlags(ctx)
 
 	return config
 }
@@ -87,6 +91,7 @@ type Pincer struct {
 	Db     *db.Db
 
 	Units *units.Units
+	Users *users.Users
 }
 
 func New(logger *slog.Logger, cfg Config) (*Pincer, error) {
@@ -109,15 +114,17 @@ func (p *Pincer) setupModuleManager() error {
 	mm.RegisterModule(Db, p.initDb, modules.UserInvisibleModule)
 
 	mm.RegisterModule(Units, p.initUnits)
+	mm.RegisterModule(Users, p.initUsers)
 
 	mm.RegisterModule(All, nil)
 	mm.RegisterModule(Backend, nil)
 
 	deps := map[string][]string{
 		Units: {Db, Server},
+		Users: {Db, Server},
 
 		// Groups
-		All:     {Units},
+		All:     {Units, Users},
 		Backend: {},
 	}
 

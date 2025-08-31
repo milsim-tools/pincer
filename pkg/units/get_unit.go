@@ -30,8 +30,5 @@ func (s *Units) GetUnit(ctx context.Context, req *unitsv1.GetUnitRequest) (*unit
 		Unit: unit.Proto(),
 		MemberCount: 0,
 		RankCount: 0,
-	}, status.Error(
-		codes.Unimplemented,
-		"GetUnit is not implemented",
-	)
+	}, nil
 }
