@@ -7,6 +7,7 @@
 package unitsv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -161,13 +162,13 @@ var File_milsimtools_units_v1_units_proto protoreflect.FileDescriptor
 
 const file_milsimtools_units_v1_units_proto_rawDesc = "" +
 	"\n" +
-	" milsimtools/units/v1/units.proto\x12\x14milsimtools.units.v1\"\x8a\x01\n" +
+	" milsimtools/units/v1/units.proto\x12\x14milsimtools.units.v1\x1a\x1bbuf/validate/validate.proto\"\x92\x01\n" +
 	"\x04Unit\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x19\n" +
-	"\bowner_id\x18\x05 \x01(\tR\aownerId\"|\n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12!\n" +
+	"\bowner_id\x18\x05 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\aownerId\"|\n" +
 	"\bUnitView\x12.\n" +
 	"\x04unit\x18\x01 \x01(\v2\x1a.milsimtools.units.v1.UnitR\x04unit\x12!\n" +
 	"\fmember_count\x18\x02 \x01(\x05R\vmemberCount\x12\x1d\n" +

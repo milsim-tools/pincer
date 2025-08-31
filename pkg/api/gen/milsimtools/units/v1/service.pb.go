@@ -178,6 +178,51 @@ func (x *ListUnitsResponse) GetNextPageToken() string {
 	return ""
 }
 
+type CreateUnitRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The user to create.
+	Unit          *Unit `protobuf:"bytes,1,opt,name=unit,proto3" json:"unit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateUnitRequest) Reset() {
+	*x = CreateUnitRequest{}
+	mi := &file_milsimtools_units_v1_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateUnitRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateUnitRequest) ProtoMessage() {}
+
+func (x *CreateUnitRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_milsimtools_units_v1_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateUnitRequest.ProtoReflect.Descriptor instead.
+func (*CreateUnitRequest) Descriptor() ([]byte, []int) {
+	return file_milsimtools_units_v1_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateUnitRequest) GetUnit() *Unit {
+	if x != nil {
+		return x.Unit
+	}
+	return nil
+}
+
 var File_milsimtools_units_v1_service_proto protoreflect.FileDescriptor
 
 const file_milsimtools_units_v1_service_proto_rawDesc = "" +
@@ -192,10 +237,14 @@ const file_milsimtools_units_v1_service_proto_rawDesc = "" +
 	"\border_by\x18\x03 \x01(\tR\aorderBy\"q\n" +
 	"\x11ListUnitsResponse\x124\n" +
 	"\x05units\x18\x01 \x03(\v2\x1e.milsimtools.units.v1.UnitViewR\x05units\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken2\xe8\x01\n" +
+	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"C\n" +
+	"\x11CreateUnitRequest\x12.\n" +
+	"\x04unit\x18\x01 \x01(\v2\x1a.milsimtools.units.v1.UnitR\x04unit2\xce\x02\n" +
 	"\fUnitsService\x12g\n" +
 	"\aGetUnit\x12$.milsimtools.units.v1.GetUnitRequest\x1a\x1e.milsimtools.units.v1.UnitView\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/units/{id}\x12o\n" +
-	"\tListUnits\x12&.milsimtools.units.v1.ListUnitsRequest\x1a'.milsimtools.units.v1.ListUnitsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/unitsB\xe3\x01\n" +
+	"\tListUnits\x12&.milsimtools.units.v1.ListUnitsRequest\x1a'.milsimtools.units.v1.ListUnitsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/units\x12d\n" +
+	"\n" +
+	"CreateUnit\x12'.milsimtools.units.v1.CreateUnitRequest\x1a\x1a.milsimtools.units.v1.Unit\"\x11\x82\xd3\xe4\x93\x02\v\"\t/v1/unitsB\xe3\x01\n" +
 	"\x18com.milsimtools.units.v1B\fServiceProtoP\x01ZGgithub.com/milsim-tools/pincer/pkg/api/gen/milsimtools/units/v1;unitsv1\xa2\x02\x03MUX\xaa\x02\x14Milsimtools.Units.V1\xca\x02\x14Milsimtools\\Units\\V1\xe2\x02 Milsimtools\\Units\\V1\\GPBMetadata\xea\x02\x16Milsimtools::Units::V1b\x06proto3"
 
 var (
@@ -210,24 +259,29 @@ func file_milsimtools_units_v1_service_proto_rawDescGZIP() []byte {
 	return file_milsimtools_units_v1_service_proto_rawDescData
 }
 
-var file_milsimtools_units_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_milsimtools_units_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_milsimtools_units_v1_service_proto_goTypes = []any{
 	(*GetUnitRequest)(nil),    // 0: milsimtools.units.v1.GetUnitRequest
 	(*ListUnitsRequest)(nil),  // 1: milsimtools.units.v1.ListUnitsRequest
 	(*ListUnitsResponse)(nil), // 2: milsimtools.units.v1.ListUnitsResponse
-	(*UnitView)(nil),          // 3: milsimtools.units.v1.UnitView
+	(*CreateUnitRequest)(nil), // 3: milsimtools.units.v1.CreateUnitRequest
+	(*UnitView)(nil),          // 4: milsimtools.units.v1.UnitView
+	(*Unit)(nil),              // 5: milsimtools.units.v1.Unit
 }
 var file_milsimtools_units_v1_service_proto_depIdxs = []int32{
-	3, // 0: milsimtools.units.v1.ListUnitsResponse.units:type_name -> milsimtools.units.v1.UnitView
-	0, // 1: milsimtools.units.v1.UnitsService.GetUnit:input_type -> milsimtools.units.v1.GetUnitRequest
-	1, // 2: milsimtools.units.v1.UnitsService.ListUnits:input_type -> milsimtools.units.v1.ListUnitsRequest
-	3, // 3: milsimtools.units.v1.UnitsService.GetUnit:output_type -> milsimtools.units.v1.UnitView
-	2, // 4: milsimtools.units.v1.UnitsService.ListUnits:output_type -> milsimtools.units.v1.ListUnitsResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 0: milsimtools.units.v1.ListUnitsResponse.units:type_name -> milsimtools.units.v1.UnitView
+	5, // 1: milsimtools.units.v1.CreateUnitRequest.unit:type_name -> milsimtools.units.v1.Unit
+	0, // 2: milsimtools.units.v1.UnitsService.GetUnit:input_type -> milsimtools.units.v1.GetUnitRequest
+	1, // 3: milsimtools.units.v1.UnitsService.ListUnits:input_type -> milsimtools.units.v1.ListUnitsRequest
+	3, // 4: milsimtools.units.v1.UnitsService.CreateUnit:input_type -> milsimtools.units.v1.CreateUnitRequest
+	4, // 5: milsimtools.units.v1.UnitsService.GetUnit:output_type -> milsimtools.units.v1.UnitView
+	2, // 6: milsimtools.units.v1.UnitsService.ListUnits:output_type -> milsimtools.units.v1.ListUnitsResponse
+	5, // 7: milsimtools.units.v1.UnitsService.CreateUnit:output_type -> milsimtools.units.v1.Unit
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_milsimtools_units_v1_service_proto_init() }
@@ -242,7 +296,7 @@ func file_milsimtools_units_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_milsimtools_units_v1_service_proto_rawDesc), len(file_milsimtools_units_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

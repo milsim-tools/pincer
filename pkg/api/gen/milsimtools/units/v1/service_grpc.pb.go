@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UnitsService_GetUnit_FullMethodName   = "/milsimtools.units.v1.UnitsService/GetUnit"
-	UnitsService_ListUnits_FullMethodName = "/milsimtools.units.v1.UnitsService/ListUnits"
+	UnitsService_GetUnit_FullMethodName    = "/milsimtools.units.v1.UnitsService/GetUnit"
+	UnitsService_ListUnits_FullMethodName  = "/milsimtools.units.v1.UnitsService/ListUnits"
+	UnitsService_CreateUnit_FullMethodName = "/milsimtools.units.v1.UnitsService/CreateUnit"
 )
 
 // UnitsServiceClient is the client API for UnitsService service.
@@ -29,6 +30,7 @@ const (
 type UnitsServiceClient interface {
 	GetUnit(ctx context.Context, in *GetUnitRequest, opts ...grpc.CallOption) (*UnitView, error)
 	ListUnits(ctx context.Context, in *ListUnitsRequest, opts ...grpc.CallOption) (*ListUnitsResponse, error)
+	CreateUnit(ctx context.Context, in *CreateUnitRequest, opts ...grpc.CallOption) (*Unit, error)
 }
 
 type unitsServiceClient struct {
@@ -59,12 +61,23 @@ func (c *unitsServiceClient) ListUnits(ctx context.Context, in *ListUnitsRequest
 	return out, nil
 }
 
+func (c *unitsServiceClient) CreateUnit(ctx context.Context, in *CreateUnitRequest, opts ...grpc.CallOption) (*Unit, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Unit)
+	err := c.cc.Invoke(ctx, UnitsService_CreateUnit_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UnitsServiceServer is the server API for UnitsService service.
 // All implementations must embed UnimplementedUnitsServiceServer
 // for forward compatibility.
 type UnitsServiceServer interface {
 	GetUnit(context.Context, *GetUnitRequest) (*UnitView, error)
 	ListUnits(context.Context, *ListUnitsRequest) (*ListUnitsResponse, error)
+	CreateUnit(context.Context, *CreateUnitRequest) (*Unit, error)
 	mustEmbedUnimplementedUnitsServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedUnitsServiceServer) GetUnit(context.Context, *GetUnitRequest)
 }
 func (UnimplementedUnitsServiceServer) ListUnits(context.Context, *ListUnitsRequest) (*ListUnitsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUnits not implemented")
+}
+func (UnimplementedUnitsServiceServer) CreateUnit(context.Context, *CreateUnitRequest) (*Unit, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUnit not implemented")
 }
 func (UnimplementedUnitsServiceServer) mustEmbedUnimplementedUnitsServiceServer() {}
 func (UnimplementedUnitsServiceServer) testEmbeddedByValue()                      {}
@@ -138,6 +154,24 @@ func _UnitsService_ListUnits_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UnitsService_CreateUnit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUnitRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UnitsServiceServer).CreateUnit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UnitsService_CreateUnit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UnitsServiceServer).CreateUnit(ctx, req.(*CreateUnitRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UnitsService_ServiceDesc is the grpc.ServiceDesc for UnitsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var UnitsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUnits",
 			Handler:    _UnitsService_ListUnits_Handler,
+		},
+		{
+			MethodName: "CreateUnit",
+			Handler:    _UnitsService_CreateUnit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

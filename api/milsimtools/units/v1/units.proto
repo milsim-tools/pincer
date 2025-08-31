@@ -2,12 +2,14 @@ syntax = "proto3";
 
 package milsimtools.units.v1;
 
+import "buf/validate/validate.proto";
+
 message Unit {
   string id = 1;
   string display_name = 2;
   string slug = 3;
   string description = 4;
-  string owner_id = 5;
+  string owner_id = 5 [(buf.validate.field).required = true];
 }
 
 message UnitView {

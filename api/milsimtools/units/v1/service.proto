@@ -20,6 +20,11 @@ message ListUnitsResponse {
   string next_page_token = 2;
 }
 
+message CreateUnitRequest {
+  // The user to create.
+  Unit unit = 1;
+}
+
 service UnitsService {
   rpc GetUnit (GetUnitRequest) returns (UnitView) {
     option (google.api.http) = { get: "/v1/units/{id}" };
@@ -27,5 +32,9 @@ service UnitsService {
 
   rpc ListUnits (ListUnitsRequest) returns (ListUnitsResponse) {
     option (google.api.http) = { get: "/v1/units" };
+  };
+
+  rpc CreateUnit (CreateUnitRequest) returns (Unit) {
+    option (google.api.http) = { post: "/v1/units" };
   };
 }

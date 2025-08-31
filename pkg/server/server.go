@@ -165,7 +165,7 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 	serverLog := middleware.GRPCServerLog{
 		Log:                      logger,
 		WithRequest:              true,
-		DisableRequestSuccessLog: false,
+		DisableRequestSuccessLog: true,
 	}
 
 	validator, err := protovalidate.New()
