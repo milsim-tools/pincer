@@ -11,7 +11,17 @@ import (
 )
 
 func (s *Users) GetUser(ctx context.Context, req *usersv1.GetUserRequest) (*usersv1.UserView, error) {
-	user, err := gorm.G[UsersUser](s.db.Db).Where("id = ?", req.Id).First(ctx)
+	qb := gorm.G[UsersUser](s.db.Db).Select("*")
+
+	if id := req.GetId(); id != "" {
+		qb = qb.Where("id = ?", id)
+	} else if email := req.GetEmail(); email != "" {
+		qb = qb.Where("email = ?", email)
+	} else if username := req.GetUsername(); username != "" {
+		qb = qb.Where("username = ?", username)
+	}
+
+	user, err := qb.First(ctx)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return &usersv1.UserView{}, status.Error(

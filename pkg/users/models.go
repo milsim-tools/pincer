@@ -9,6 +9,7 @@ import (
 type UsersUser struct {
 	models.Model
 
+	SSOID       string `gorm:"notNull;uniqueIndex"`
 	DisplayName string `gorm:"notNull"`
 	Username    string `gorm:"notNull;uniqueIndex"`
 	Email       string `gorm:"notNull;uniqueIndex"`

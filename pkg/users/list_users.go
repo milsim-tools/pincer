@@ -2,9 +2,6 @@ package users
 
 import (
 	"context"
-	"fmt"
-	"slices"
-	"strings"
 	"time"
 
 	"github.com/milsim-tools/pincer/internal/helpers"
@@ -16,7 +13,9 @@ import (
 
 func (s *Users) ListUsers(ctx context.Context, req *usersv1.ListUsersRequest) (*usersv1.ListUsersResponse, error) {
 	limit := int(req.PageSize)
-	if limit <= 0 || limit > 100 {
+	if limit <= 0 {
+		limit = 50
+	} else if limit > 100 {
 		limit = 100
 	}
 
@@ -33,28 +32,7 @@ func (s *Users) ListUsers(ctx context.Context, req *usersv1.ListUsersRequest) (*
 			)
 		}
 
-		if cursor.OrderBy != req.OrderBy {
-			return &usersv1.ListUsersResponse{}, status.Error(
-				codes.InvalidArgument,
-				"invalid page_token, order_by mismatch",
-			)
-		}
-
 		qb.Where("created_at > ?", cursor.CreatedAt)
-	}
-
-	if req.OrderBy != "" {
-		parts := strings.SplitSeq(req.OrderBy, ",")
-		for part := range parts {
-			order := strings.Split(strings.TrimSpace(part), " ")
-			if len(order) != 2 || order[0] != "created_at" || slices.Contains([]string{"asc", "desc", "ASC", "DESC"}, order[1]) {
-				return &usersv1.ListUsersResponse{}, status.Error(
-					codes.InvalidArgument,
-					"invalid order_by format",
-				)
-			}
-			qb = qb.Order(fmt.Sprintf("%s %s", order[0], order[1]))
-		}
 	}
 
 	users, err := qb.Find(ctx)
@@ -69,7 +47,6 @@ func (s *Users) ListUsers(ctx context.Context, req *usersv1.ListUsersRequest) (*
 
 	if len(users) > 0 {
 		pc := helpers.PaginationCursor{
-			OrderBy:   req.OrderBy,
 			CreatedAt: users[len(users)-1].CreatedAt.Format(time.RFC3339),
 		}
 

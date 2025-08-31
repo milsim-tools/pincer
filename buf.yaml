@@ -10,3 +10,4 @@ breaking:
     - FILE
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/bufbuild/protovalidate:v0.14.1

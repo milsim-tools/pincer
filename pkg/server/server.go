@@ -9,6 +9,8 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/grafana/dskit/services"
+	"buf.build/go/protovalidate"
+	protovalidate_middleware "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/protovalidate"
 	"github.com/milsim-tools/pincer/internal/middleware"
 	"github.com/milsim-tools/pincer/internal/signals"
 	"github.com/urfave/cli/v2"
@@ -166,8 +168,19 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 		DisableRequestSuccessLog: false,
 	}
 
-	grpcMiddleware := []grpc.UnaryServerInterceptor{serverLog.UnaryServerInterceptor}
-	grpcStreamMiddleware := []grpc.StreamServerInterceptor{serverLog.StreamServerInterceptor}
+	validator, err := protovalidate.New()
+	if err != nil {
+		return nil, err
+	}
+
+	grpcMiddleware := []grpc.UnaryServerInterceptor{
+		serverLog.UnaryServerInterceptor,
+		protovalidate_middleware.UnaryServerInterceptor(validator),
+	}
+	grpcStreamMiddleware := []grpc.StreamServerInterceptor{
+		serverLog.StreamServerInterceptor,
+		protovalidate_middleware.StreamServerInterceptor(validator),
+	}
 
 	grpcOptions := []grpc.ServerOption{
 		grpc.ChainUnaryInterceptor(grpcMiddleware...),

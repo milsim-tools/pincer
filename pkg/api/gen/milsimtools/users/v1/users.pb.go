@@ -84,6 +84,7 @@ type User struct {
 	AvatarUrl     string                 `protobuf:"bytes,6,opt,name=avatar_url,json=avatarUrl,proto3" json:"avatar_url,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	SsoId         string                 `protobuf:"bytes,9,opt,name=sso_id,json=ssoId,proto3" json:"sso_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -172,6 +173,13 @@ func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
 		return x.UpdatedAt
 	}
 	return nil
+}
+
+func (x *User) GetSsoId() string {
+	if x != nil {
+		return x.SsoId
+	}
+	return ""
 }
 
 type UserView struct {
@@ -290,7 +298,7 @@ var File_milsimtools_users_v1_users_proto protoreflect.FileDescriptor
 
 const file_milsimtools_users_v1_users_proto_rawDesc = "" +
 	"\n" +
-	" milsimtools/users/v1/users.proto\x12\x14milsimtools.users.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x92\x02\n" +
+	" milsimtools/users/v1/users.proto\x12\x14milsimtools.users.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa9\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12!\n" +
@@ -302,7 +310,8 @@ const file_milsimtools_users_v1_users_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"Y\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x15\n" +
+	"\x06sso_id\x18\t \x01(\tR\x05ssoId\"Y\n" +
 	"\bUserView\x12.\n" +
 	"\x04user\x18\x01 \x01(\v2\x1a.milsimtools.users.v1.UserR\x04user\x12\x1d\n" +
 	"\n" +

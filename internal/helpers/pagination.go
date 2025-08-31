@@ -6,7 +6,6 @@ import (
 )
 
 type PaginationCursor struct {
-	OrderBy   string
 	CreatedAt string
 }
 

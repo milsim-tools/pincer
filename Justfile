@@ -12,7 +12,6 @@ _clean-gen:
 # Generate API bindings for the protobuf definitions
 [group("proto")]
 gen: _clean-gen
-  # buf generate buf.build/googleapis/googleapis
   buf generate
 
 # Lint the protobuf definitions
