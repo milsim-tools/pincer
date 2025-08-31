@@ -1,12 +1,15 @@
 package pincer
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"fmt"
 	"log/slog"
+	"net/http"
 	"time"
 
+	"github.com/grafana/dskit/grpcutil"
 	"github.com/grafana/dskit/services"
 	"github.com/milsim-tools/pincer/internal/modules"
 	"github.com/milsim-tools/pincer/internal/signals"
@@ -15,6 +18,7 @@ import (
 	"github.com/milsim-tools/pincer/pkg/units"
 	"github.com/urfave/cli/v2"
 	"go.uber.org/atomic"
+	"google.golang.org/grpc/health/grpc_health_v1"
 )
 
 const (
@@ -152,6 +156,9 @@ func (p *Pincer) Run(ctx context.Context) error {
 
 	shutdownRequested := atomic.NewBool(false)
 
+	p.Server.HTTP.Path("/ready").Methods("GET").Handler(p.readyHandler(sm, shutdownRequested))
+	grpc_health_v1.RegisterHealthServer(p.Server.GRPCServer, grpcutil.NewHealthCheck(sm))
+
 	// Let's listen for events from this manager, and log them.
 	logHook := func(msg, key string) func() {
 		return func() {
@@ -219,4 +226,28 @@ func (p *Pincer) Run(ctx context.Context) error {
 		}
 	}
 	return err
+}
+
+func (p *Pincer) readyHandler(sm *services.Manager, shutdownRequested *atomic.Bool) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if shutdownRequested.Load() {
+			p.logger.Debug("application is stopping")
+			http.Error(w, "application is stopping", http.StatusServiceUnavailable)
+			return
+		}
+		if !sm.IsHealthy() {
+			msg := bytes.Buffer{}
+			msg.WriteString("services not running:\n")
+
+			byState := sm.ServicesByState()
+			for state, servs := range byState {
+				msg.WriteString(fmt.Sprintf("%v: %d\n", state, len(servs)))
+			}
+
+			http.Error(w, msg.String(), http.StatusServiceUnavailable)
+			return
+		}
+
+		http.Error(w, "ready", http.StatusOK)
+	}
 }

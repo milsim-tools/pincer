@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gorilla/mux"
 	"github.com/grafana/dskit/services"
 	"github.com/milsim-tools/pincer/internal/middleware"
 	"github.com/milsim-tools/pincer/internal/signals"
@@ -131,7 +132,7 @@ type Server struct {
 	httpListener net.Listener
 	grpcListener net.Listener
 
-	HTTP       *http.ServeMux
+	HTTP       *mux.Router
 	HTTPServer *http.Server
 	GRPCServer *grpc.Server
 
@@ -151,7 +152,7 @@ func New(logger *slog.Logger, config Config) (*Server, error) {
 
 	logger.Info("server listening on addr", "http", httpListener.Addr(), "grpc", grpcListener.Addr())
 
-	mux := http.NewServeMux()
+	mux := mux.NewRouter()
 	httpServer := http.Server{
 		Handler:      mux,
 		ReadTimeout:  30 * time.Second,

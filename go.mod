@@ -3,6 +3,7 @@ module github.com/milsim-tools/pincer
 go 1.24.4
 
 require (
+	github.com/gorilla/mux v1.8.0
 	github.com/grafana/dskit v0.0.0-20250828173137-de14cf923eeb
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
 	github.com/pkg/errors v0.9.1
