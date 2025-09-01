@@ -1,0 +1,59 @@
+---
+name: Docker CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/docker.yaml
+      - cmd/**/*
+      - internal/**/*
+      - pkg/**/*
+      - go.mod
+      - go.sum
+      - Justfile
+      - Dockerfile
+      - docker-bake.hcl
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+      attestations: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: extractions/setup-just@v3
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@v5
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: |
+            ghcr.io/milsim-tools/pincer
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
+      - id: version
+        run: echo "version=$(just version)" >> "$GITHUB_OUTPUT"
+      - uses: docker/bake-action@v6
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        with:
+          sbom: true
+          provenance: max
+          push: true
+          files: |
+            ./docker-bake.hcl
+            cwd://${{ steps.meta.outputs.bake-file }}
+          targets: build
+          set: |
+            *.cache-to=type=gha
+            *.cache-from=type=gha

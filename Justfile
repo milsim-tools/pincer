@@ -6,6 +6,15 @@ version := if git_tag != "" { git_tag } else { "dev-" + git_commit }
 
 ldflags := "-X main.Version=" + version
 
+version:
+  @echo {{ version }}
+
+bake:
+  VERSION={{ version }} docker buildx bake \
+    --allow 'fs.read=.' \
+    --file docker-bake.hcl \
+    default
+
 _clean-gen:
   rm -rf pkg/api/gen
 
