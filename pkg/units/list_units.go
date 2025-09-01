@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/milsim-tools/pincer/internal/helpers"
 	unitsv1 "github.com/milsim-tools/pincer/pkg/api/gen/milsimtools/units/v1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -13,6 +14,10 @@ import (
 
 func (s *Units) ListUnits(ctx context.Context, req *unitsv1.ListUnitsRequest) (*unitsv1.ListUnitsResponse, error) {
 	qb := gorm.G[UnitsUnit](s.db.Db).Limit(int(req.PageSize))
+
+	if cursor, err := helpers.CursorFromString(req.PageToken); err != nil && cursor != nil {
+		qb = helpers.ApplyCursor(qb, cursor)
+	}
 
 	// TODO: Cursor pagination
 
