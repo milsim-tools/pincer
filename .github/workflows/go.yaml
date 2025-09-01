@@ -1,0 +1,44 @@
+---
+name: Golang CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/go.yaml
+      - cmd/**/*
+      - internal/**/*
+      - pkg/**/*
+      - go.mod
+      - go.sum
+      - Justfile
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      # allow platform-specific builds to fail on their own
+      fail-fast: false
+      matrix:
+        os: [linux, darwin, windows]
+        arch: [amd64, arm64]
+        exclude:
+          - os: windows
+            arch: arm64
+    env:
+      GOOS: ${{ matrix.os }}
+      GOARCH: ${{ matrix.arch }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v3
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.4'
+      - name: Go build
+        run: just build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pincer-${{ matrix.os }}-${{ matrix.arch }}
+          path: out/pincer
