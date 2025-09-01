@@ -38,6 +38,10 @@ jobs:
         exclude:
           - os: windows
             arch: arm64
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
     env:
       GOOS: ${{ matrix.os }}
       GOARCH: ${{ matrix.arch }}
