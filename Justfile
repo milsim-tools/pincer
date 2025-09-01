@@ -41,7 +41,7 @@ build: _clean
 run: _clean
   mkdir -p out
   go build \
-    -ldflags "{{ ldflags }}" \
+    -ldflags "-X main.Version=dev-local" \
     -o out/pincer \
     ./cmd/pincer/main.go
   ./out/pincer run
