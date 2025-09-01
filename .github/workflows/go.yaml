@@ -50,6 +50,11 @@ jobs:
       - name: Go build
         run: just build
       - uses: actions/upload-artifact@v4
+        id: upload
         with:
           name: pincer-${{ matrix.os }}-${{ matrix.arch }}
           path: out/pincer
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-name: pincer-${{ matrix.os }}-${{ matrix.arch }}
+          subject-digest: sha256:${{ steps.upload.outputs.artifact-digest }}
