@@ -53,7 +53,6 @@ jobs:
           files: |
             ./docker-bake.hcl
             cwd://${{ steps.meta.outputs.bake-file }}
-          targets: build
           set: |
             *.cache-to=type=gha
             *.cache-from=type=gha
