@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package milsimtools.members.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+// The status of a unit member.
+enum UnitMemberStatus {
+  UNIT_MEMBER_STATUS_UNSPECIFIED = 0;
+
+  // The member is pending their application being accepted.
+  UNIT_MEMBER_STATUS_PENDING = 1;
+
+  // The member has been rejected from joining the unit.
+  UNIT_MEMBER_STATUS_REJECTED = 2;
+
+  // The member has been approved to join the unit.
+  UNIT_MEMBER_STATUS_APPROVED = 3;
+
+  // The member has been banned from the unit.
+  UNIT_MEMBER_STATUS_BANNED = 4;
+}
+
+// Permissions for a unit member, represented as a bitmask.
+enum UnitMemberPermission {
+  UNIT_MEMBER_PERMISSION_UNSPECIFIED = 0;
+
+  // Full access to the unit, including managing members and settings.
+  UNIT_MEMBER_PERMISSION_ADMINISTRATOR = 1;
+
+  // No permissions, the member is banned.
+  UNIT_MEMBER_PERMISSION_BANNED = 2;
+
+  // Can view the member list.
+  UNIT_MEMBER_PERMISSION_VIEW_MEMBERS = 4;
+  // Can manage members, including inviting, removing, and changing permissions.
+  UNIT_MEMBER_PERMISSION_MANAGE_MEMBERS = 8;
+
+  // Can view and manage applications to join the unit.
+  UNIT_MEMBER_PERMISSION_VIEW_APPLICATIONS = 16;
+  // Can manage applications to join the unit.
+  UNIT_MEMBER_PERMISSION_MANAGE_APPLICATIONS = 32;
+
+  // Can view events.
+  UNIT_MEMBER_PERMISSION_VIEW_EVENTS = 64;
+  // Can respond to event invitations.
+  UNIT_MEMBER_PERMISSION_RESPOND_EVENTS = 128;
+  // Can manage events, including creating, updating, and deleting events.
+  UNIT_MEMBER_PERMISSION_MANAGE_EVENTS = 256;
+
+  // Can view sections.
+  UNIT_MEMBER_PERMISSION_VIEW_SECTIONS = 512;
+  // Can manage sections, including creating, updating, and deleting sections.
+  UNIT_MEMBER_PERMISSION_MANAGE_SECTIONS = 1024;
+}
+
+// A member of a unit.
+message UnitMember {
+  // The ID of the member, represented as a ULID.
+  string id = 1;
+
+  // The status of the member.
+  string unit_id = 2 [(buf.validate.field).required = true];
+
+  // The ID of the user who is the member, represented as a ULID.
+  string user_id = 3 [(buf.validate.field).required = true];
+
+  // The permissions of the member, represented as a bitmask of UnitMemberPermission.
+  int32 permissions = 4;
+
+  // The time the member was created.
+  google.protobuf.Timestamp created_at = 5;
+
+  // The last time the member was updated.
+  google.protobuf.Timestamp updated_at = 6;
+}

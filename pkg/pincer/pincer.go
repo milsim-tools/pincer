@@ -14,6 +14,7 @@ import (
 	"github.com/milsim-tools/pincer/internal/modules"
 	"github.com/milsim-tools/pincer/internal/signals"
 	"github.com/milsim-tools/pincer/pkg/db"
+	"github.com/milsim-tools/pincer/pkg/members"
 	"github.com/milsim-tools/pincer/pkg/server"
 	"github.com/milsim-tools/pincer/pkg/units"
 	"github.com/milsim-tools/pincer/pkg/users"
@@ -48,6 +49,7 @@ func init() {
 	Flags = append(Flags, db.Flags...)
 	Flags = append(Flags, units.Flags...)
 	Flags = append(Flags, users.Flags...)
+	Flags = append(Flags, members.Flags...)
 }
 
 type Config struct {
@@ -58,8 +60,9 @@ type Config struct {
 	Server server.Config
 	Db     db.Config
 
-	Units units.Config
-	Users users.Config
+	Units   units.Config
+	Users   users.Config
+	Members members.Config
 }
 
 func ConfigFromFlags(version string, ctx *cli.Context) Config {
@@ -73,6 +76,7 @@ func ConfigFromFlags(version string, ctx *cli.Context) Config {
 	config.Db = db.ConfigFromFlags(ctx)
 	config.Units = units.ConfigFromFlags(ctx)
 	config.Users = users.ConfigFromFlags(ctx)
+	config.Members = members.ConfigFromFlags(ctx)
 
 	return config
 }
@@ -90,8 +94,9 @@ type Pincer struct {
 	Server *server.Server
 	Db     *db.Db
 
-	Units *units.Units
-	Users *users.Users
+	Units   *units.Units
+	Users   *users.Users
+	Members *members.Members
 }
 
 func New(logger *slog.Logger, cfg Config) (*Pincer, error) {
@@ -115,13 +120,15 @@ func (p *Pincer) setupModuleManager() error {
 
 	mm.RegisterModule(Units, p.initUnits)
 	mm.RegisterModule(Users, p.initUsers)
+	mm.RegisterModule(Members, p.initMembers)
 
 	mm.RegisterModule(All, nil)
 	mm.RegisterModule(Backend, nil)
 
 	deps := map[string][]string{
-		Units: {Db, Server},
-		Users: {Db, Server},
+		Units:   {Db, Server},
+		Users:   {Db, Server},
+		Members: {Db, Server},
 
 		// Groups
 		All:     {Units, Users},

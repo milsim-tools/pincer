@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package milsimtools.members.v1;
+
+import "milsimtools/members/v1/members.proto";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+message GetMemberRequest {
+  // The ID of the user to get.
+  string user_id = 1;
+
+  // The ID of the unit to get the user from.
+  string unit_id = 2;
+}
+
+message ListMembersRequest {
+  // The ID of the user to filter by.
+  string user_id = 1;
+
+  // The ID of the unit to filter by.
+  string unit_id = 2;
+
+  // The maximum number of members to return. Default is 50, maximum is 100.
+  int32 page_size = 3 [(buf.validate.field).int32.lte = 100];
+
+  // A page token, received from a previous `ListUsers` call.
+  string page_token = 4;
+}
+
+message ListMembersResponse {
+  // The members.
+  repeated UnitMember members = 1;
+
+  // A token, which can be sent as `page_token` to retrieve the next page.
+  string next_page_token = 2;
+}
+
+message CreateMemberRequest {
+  // The user to create.
+  UnitMember member = 1;
+}
+
+message UpdateMemberRequest {
+  // The user to update.
+  //
+  // The user's `id` field is used to identify the user to update.
+  UnitMember member = 1;
+
+  // The list of fields to update.
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteMemberRequest {
+  // The ID of the user to delete the member of.
+  string user_id = 1;
+
+  // The ID of the unit to delete the user from.
+  string unit_id = 2;
+}
+
+service MembersService {
+  // Gets a user by an ID.
+  rpc GetMember (GetMemberRequest) returns (UnitMember) {
+    option (google.api.http) = {
+      get: "/v1/members/by-unit/{unit_id}/{user_id}"
+    };
+  };
+
+  // Lists users.
+  rpc ListMembers (ListMembersRequest) returns (ListMembersResponse) {
+    option (google.api.http) = {
+      get: "/v1/members/by-unit/{unit_id}"
+      additional_bindings: {
+        get: "/v1/members/by-user/{user_id}",
+      }
+    };
+  };
+
+  // Create a new user.
+  rpc CreateMember (CreateMemberRequest) returns (UnitMember) {
+    option (google.api.http) = {
+      post: "/v1/members/by-unit/{member.unit_id}",
+    };
+  };
+
+  // Update an existing user by its ID.
+  rpc UpdateMember (UpdateMemberRequest) returns (UnitMember) {
+    option (google.api.http) = {
+      patch: "/v1/members/by-unit/{member.unit_id}/{member.user_id}"
+    };
+  };
+
+  // Update an existing user by its ID.
+  rpc DeleteMember (DeleteMemberRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = { delete: "/v1/members/by-unit/{unit_id}/{user_id}" };
+  };
+}
