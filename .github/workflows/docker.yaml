@@ -48,7 +48,7 @@ jobs:
           VERSION: ${{ steps.version.outputs.version }}
         with:
           sbom: true
-          provenance: max
+          provenance: mode=max
           push: true
           files: |
             ./docker-bake.hcl
