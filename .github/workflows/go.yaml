@@ -54,7 +54,7 @@ jobs:
         with:
           name: pincer-${{ matrix.os }}-${{ matrix.arch }}
           path: out/pincer
-      - uses: actions/attest-build-provenance@v2
+      - uses: actions/attest-build-provenance@v3
         with:
           subject-name: pincer-${{ matrix.os }}-${{ matrix.arch }}
           subject-digest: sha256:${{ steps.upload.outputs.artifact-digest }}
