@@ -14,6 +14,14 @@ on:
       - Justfile
   pull_request:
     branches: [main]
+    paths:
+      - .github/workflows/go.yaml
+      - cmd/**/*
+      - internal/**/*
+      - pkg/**/*
+      - go.mod
+      - go.sum
+      - Justfile
 
 jobs:
   lint:
