@@ -1,0 +1,87 @@
+---
+services:
+  #############################################
+  # Kratos - Self-service auth UI
+  #############################################
+  kratos:
+    depends_on: [mailslurper, kratos-migrate, db]
+    image: &kratos-img oryd/kratos:v1.3.1
+    env_file: ../../.env
+    environment: &kratos-env
+      DSN: ${KRATOS_DB_DSN}
+    volumes: &kratos-config
+      - ./kratos.yml:/etc/config/kratos/kratos.yml:ro
+      - ./identity.schema.json:/etc/config/kratos/identity.schema.json:ro
+    ports:
+      - '4433:4433' # public
+      - '4434:4434' # admin
+    command: serve -c /etc/config/kratos/kratos.yml --dev --watch-courier
+    restart: on-failure
+
+  kratos-selfservice-ui-node:
+    image: oryd/kratos-selfservice-ui-node:v1.3.1
+    ports:
+      - '4455:3000' # web ui
+    environment:
+      KRATOS_PUBLIC_URL: http://kratos:4433/
+      KRATOS_BROWSER_URL: http://127.0.0.1:4433/
+      COOKIE_SECRET: changeme
+      CSRF_COOKIE_NAME: ory_csrf_ui
+      CSRF_COOKIE_SECRET: changeme
+    restart: on-failure
+
+  kratos-migrate:
+    image: *kratos-img 
+    env_file: ../../.env
+    environment: *kratos-env
+    volumes: *kratos-config
+    depends_on: [db]
+    command: -c /etc/config/kratos/kratos.yml migrate sql -e --yes
+    restart: on-failure
+
+  mailslurper:
+    image: oryd/mailslurper:latest-smtps
+    ports:
+      - '4436:4436'
+      - '4437:4437'
+
+  #############################################
+  # Hydra - OAuth2/OIDC service
+  #############################################
+  hydra:
+    image: oryd/hydra:v2.3.0
+    env_file: ../../.env
+    ports:
+      - "4444:4444" # Public port
+      - "4445:4445" # Admin port
+      - "5555:5555" # Port for hydra token user
+    command: serve -c /etc/config/hydra/hydra.yml all --dev
+    environment:
+      DSN: ${HYDRA_DB_DSN}
+    volumes:
+      - ./hydra.yml:/etc/config/hydra/hydra.yml:ro
+    restart: unless-stopped
+    depends_on:
+      - hydra-migrate
+      - db
+
+  hydra-migrate:
+    image: oryd/hydra:v2.3.0
+    env_file: ../../.env
+    environment:
+      DSN: ${HYDRA_DB_DSN}
+    command: migrate -c /etc/config/hydra/hydra.yml sql up -e --yes
+    pull_policy: missing
+    volumes:
+      - ./hydra.yml:/etc/config/hydra/hydra.yml:ro
+    restart: on-failure
+    depends_on:
+      - db
+
+  hydra-consent:
+    image: oryd/hydra-login-consent-node:v2.3.0
+    environment:
+      HYDRA_ADMIN_URL: http://hydra:4445
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

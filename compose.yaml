@@ -1,4 +1,7 @@
 ---
+include:
+  - config/dev/ory.compose.yaml
+
 volumes:
   pgdata: {}
 
@@ -15,3 +18,4 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/data
+      - ./config/dev/psql:/docker-entrypoint-initdb.d:ro
