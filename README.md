@@ -4,33 +4,39 @@
   <h1 align='center'>Pincer</h1>
 
   <p align='center'>
-    A modern Milsim unit management platform built with Go and gRPC, inspired by
-    Unit Commander and PERSCOM. Pincer provides military simulation communities
-    with tools to manage units, personnel, and operations through a robust
-    API-first architecture.
+    A modern military simulation unit management platform built with Go and 
+    gRPC. Inspired by Unit Commander and PERSCOM, Pincer provides milsim 
+    communities with tools to manage units, personnel, and operations through 
+    a robust API-first architecture.
   </p>
 </p>
 
 ## Features
 
-- **Unit Management**: Create and manage military simulation units with hierarchical structures
-- **User System**: Comprehensive user profiles with preferences and role management
+- **Unit Management**: Create and manage military simulation units with 
+  hierarchical structures
+- **User System**: Comprehensive user profiles with preferences and role 
+  management
 - **gRPC API**: High-performance, type-safe API built with Protocol Buffers
-- **Modular Design**: Clean separation of concerns with dedicated modules for users, units, and core functionality
+- **Modular Design**: Clean separation of concerns with dedicated modules for 
+  users, units, and members
 
 ## Architecture
 
-This repository contains the core API definitions and generated Go code for the Pincer platform:
+Pincer is a complete Go application providing gRPC services for military 
+simulation unit management:
 
 - **Protocol Buffers**: Type-safe API definitions in `api/`
 - **Generated Code**: Auto-generated Go packages in `pkg/api/gen/`
-- **Core Services**: User management, unit management, and shared utilities
+- **Business Logic**: Service implementations in domain packages
+- **Database**: PostgreSQL with GORM for persistence
+- **CLI Interface**: Command-line application for running services
 
 ### API Modules
 
 - `milsimtools.users.v1` - User accounts, profiles, and preferences
 - `milsimtools.units.v1` - Military unit structures and management
-- `milsimtools.core.v1` - Shared status codes and error handling
+- `milsimtools.members.v1` - Unit membership and personnel management
 
 ## Development
 
@@ -48,44 +54,62 @@ This repository contains the core API definitions and generated Go code for the 
    cd pincer
    ```
 
-2. Generate Go code from protobuf definitions:
+2. Install dependencies and generate code:
    ```bash
    just gen
    ```
 
+3. Set up environment configuration:
+   ```bash
+   just dotenv
+   ```
+
 ### Available Commands
 
+- `just build` - Compile the pincer binary
+- `just run` - Build and run the application locally
 - `just gen` - Generate protobuf Go code (includes clean)
-- `just clean` - Remove generated files
 - `just proto-lint` - Lint protobuf files
 - `just proto-breaking` - Check for breaking changes against main branch
+- `just fmt` - Format Go code
+- `just lint` - Lint Go code with go vet
+- `just check` - Compile everything to verify builds
+- `just test` - Run Go tests
 
 ### Code Generation
 
-The project uses [buf](https://buf.build) to generate Go code from Protocol Buffer definitions. Generated files are located in `pkg/api/gen/` and should not be edited manually.
+The project uses [buf](https://buf.build) to generate Go code from Protocol 
+Buffer definitions. Generated files are located in `pkg/api/gen/` and should 
+not be edited manually.
 
 ## Project Structure
 
 ```
 ├── api/                    # Protocol Buffer definitions
 │   └── milsimtools/
-│       ├── core/v1/       # Core status and error types
-│       ├── units/v1/      # Unit management APIs
-│       └── users/v1/      # User management APIs
+│       ├── members/v1/     # Member management APIs
+│       ├── units/v1/       # Unit management APIs
+│       └── users/v1/       # User management APIs
+├── cmd/pincer/             # CLI application entry point
 ├── pkg/
-│   ├── api/gen/           # Generated Go code
-│   └── pincer/            # Core Go packages
-├── buf.yaml               # Buf configuration
-├── buf.gen.yaml          # Code generation config
-└── Justfile              # Development commands
+│   ├── api/gen/            # Generated Go code
+│   ├── members/            # Member service implementation
+│   ├── units/              # Unit service implementation
+│   ├── users/              # User service implementation
+│   └── pincer/             # Core application logic
+├── internal/               # Internal packages
+├── buf.yaml                # Buf configuration
+├── buf.gen.yaml           # Code generation config
+└── Justfile               # Development commands
 ```
 
 ## Contributing
 
-1. Make changes to `.proto` files in `api/`
-2. Run `just proto-lint` to validate changes
-3. Run `just gen` to regenerate Go code
-4. Test your changes and submit a pull request
+1. Make changes to `.proto` files in `api/` or Go code in `pkg/`
+2. Run `just proto-lint` to validate protobuf changes
+3. Run `just gen` to regenerate Go code from protobuf definitions
+4. Run `just fmt && just lint && just test` to verify code quality
+5. Test your changes and submit a pull request
 
 ### Protobuf Style Guide
 
@@ -97,4 +121,5 @@ The project uses [buf](https://buf.build) to generate Go code from Protocol Buff
 
 ## License
 
-This project is licensed under the Apache-2.0 License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the Apache-2.0 License - see the 
+[LICENSE](./LICENSE) file for details.
