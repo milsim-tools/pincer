@@ -1,9 +1,9 @@
 <p align='center'>
   <img src="https://raw.githubusercontent.com/milsim-tools/pincer/refs/heads/main/assets/logo-color.svg" alt="Milsim.tools logo" style="width: 250px; height: 250px"></img>
 
-  <h1>Pincer</h1>
+  <h1 align='center'>Pincer</h1>
 
-  <p>
+  <p align='center'>
     A modern Milsim unit management platform built with Go and gRPC, inspired by
     Unit Commander and PERSCOM. Pincer provides military simulation communities
     with tools to manage units, personnel, and operations through a robust
